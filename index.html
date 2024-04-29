@@ -12,56 +12,15 @@
         <div class="visualizer"></div>
     </div>
 
+    <!-- Link Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+    
+    <!-- Link the external JavaScript file -->
+    <script src="main.js"></script>
+
     <script>
-        const visualizer = document.querySelector('.visualizer');
-        const bufferLength = 64;
-        let elements = [];
-        let intervalId = null; // Variable to hold interval ID
 
-        // Function to reset the scale of all elements to 0
-        const resetScale = () => {
-            for (let i = 0; i < bufferLength; i++) {
-                elements[i].style.transform = `rotate(${(360 / bufferLength) * i}deg) scaleY(0)`;
-            }
-        };
-
-        // Function to stop the animation
-        const stopAnimation = () => {
-            resetScale();
-            clearInterval(intervalId);
-        };
-
-        // Function to resume the animation
-        const resumeAnimation = () => {
-            intervalId = setInterval(update, 500);
-        };
-
-        for (let i = 0; i < bufferLength; i++) {
-            const element = document.createElement('span');
-            element.classList.add('element');
-            element.style.transform = `rotate(${(360 / bufferLength) * i}deg)`;
-            elements.push(element);
-            visualizer.appendChild(element);
-        }
-
-        const update = () => {
-            for (let i = 0; i < bufferLength; i++) {
-                const scale = Math.random() * 2.5; 
-                elements[i].style.transform = `rotate(${(360 / bufferLength) * i}deg) scaleY(${scale})`;
-            }
-        };
-
-        // Start the animation initially
-        resumeAnimation();
-
-        // Function to loop the animation
-        const loopAnimation = () => {
-            stopAnimation();
-            setTimeout(resumeAnimation, 5000);
-        };
-
-        // Call loopAnimation every 10 seconds
-        setInterval(loopAnimation, 10000);
     </script>
 </body>
 </html>
